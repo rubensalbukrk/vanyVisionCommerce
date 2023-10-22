@@ -5,36 +5,30 @@ import { Card } from "../../../components/Card";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Home() {
-   const  {navigate} = useNavigation()
+  const { navigate } = useNavigation();
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
         alignItems: "center",
+        paddingHorizontal: 14,
+        paddingVertical: 18,
         backgroundColor: "#6717d6",
       }}
     >
-      <View style={{ alignContent: "flex-start" }}>
-
-        <Text style={{ fontSize: 28, fontWeight: "500", color: "#fff" }}>
-          Novidades
+      <View style={{ width: '100%', alignSelf: 'flex-start' }}>
+        <Text style={{ fontSize: 28, marginBottom: 10, fontWeight: "500", color: "#fff" }}>
+          Destaques
         </Text>
-      </View>
-      <Card>
-      <Text style={{ fontSize: 34, fontWeight: "800", color: "#fff" }}>
-          Atualização
+        <Card>
+        <Text style={{ fontSize: 34, fontWeight: "800", color: "#fff" }}>
+          OBTENHA OS MELHORES DESCONTOS
         </Text>
       </Card>
+      </View>
+    
 
-      <ButtonRoxo
-        onPress={() => navigate('Perfil', {
-          nome: 'Rubens',
-          id: 'uid@-1',
-          avatar: 'www.google.com'
-        })}
-        label="Meu perfil"
-      />
+      
     </View>
   );
 }

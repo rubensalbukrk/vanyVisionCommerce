@@ -16,9 +16,13 @@ export default function Info() {
       }}
     >
       <View style={{ alignContent: "flex-start" }}>
-        <Text style={{ fontSize: 36, color: "#fff" }}>Versão de Software</Text>
+        <Text style={{ fontSize: 36, color: "#fff" }}>Detalhes do produto</Text>
         <Text style={{ fontSize: 64, fontWeight: "800", color: "#fff" }}>
-          1.0.3
+          Nome:
+          Preço:
+          Categoria:
+          Desconto:
+          
         </Text>
       </View>
       <Image
