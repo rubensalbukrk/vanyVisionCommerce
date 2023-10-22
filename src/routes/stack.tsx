@@ -7,23 +7,20 @@ import Perfil from "../pages/Perfil";
 import Welcome from "../pages/Welcome";
 import Info from "../pages/Info";
 
+
 declare global {
-  namespace ReactNavitation {
+  namespace ReactNavigation {
    interface RootParamList {
-      Welcome: undefined
-      Drawer: undefined
-      Home: {
-        nome: string,
-        id: string,
-        avatar: string
-      }
+      Welcome: undefined;
+      Drawer: undefined;
+      Home: undefined;
       Perfil: {
-        nome: string,
         id: string,
-        avatar: string
-      }
-      Details: undefined
-      Info: undefined
+        nome: string,
+        avatar: string,
+      };
+      Details: undefined;
+      Info: undefined;
     }
   }
 }

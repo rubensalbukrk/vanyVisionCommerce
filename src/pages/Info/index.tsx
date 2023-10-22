@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-
 import { ButtonRoxo } from "../../../components/ButtonRoxo";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Info({ navigation }) {
+export default function Info() {
+  const { navigate, goBack } = useNavigation()
+
   return (
     <View
       style={{
@@ -24,7 +26,7 @@ export default function Info({ navigation }) {
         style={{ width: "80%", height: 200 }}
       />
       <ButtonRoxo
-        onPress={() => navigation.goBack()}
+        onPress={() => goBack()}
         label="Voltar"
       />
     </View>

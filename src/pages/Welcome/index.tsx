@@ -1,10 +1,9 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { RootStackPropsList } from "../../routes/stack";
-import { ScreenProps } from "../Perfil";
+
 import { ButtonRoxo } from "../../../components/ButtonRoxo";
 
-export default function Welcome({ navigation }: ScreenProps) {
+export default function Welcome({ navigation }: any) {
   return (
     <View
       style={{

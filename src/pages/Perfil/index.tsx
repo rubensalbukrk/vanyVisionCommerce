@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { ButtonRoxo } from "../../../components/ButtonRoxo";
 
 interface PerfilParams {
   nome: string;
@@ -30,21 +31,10 @@ export default function Perfil() {
         <Text style={{ fontSize: 22, color: "#fff" }}>Link {avatar} </Text>
       </View>
 
-      <TouchableOpacity
-        onPress={() => goBack()}
-        style={{
-          position: "absolute",
-          bottom: "20%",
-          width: 100,
-          height: 30,
-          borderRadius: 30,
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#7529e1",
-        }}
-      >
-        <Text style={{ color: "#fff", fontSize: 22 }}>Voltar</Text>
-      </TouchableOpacity>
+      <ButtonRoxo
+      onPress={() => goBack()}
+      label="Voltar"
+      />
     </View>
   );
 }

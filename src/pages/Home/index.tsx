@@ -4,14 +4,8 @@ import { ButtonRoxo } from "../../../components/ButtonRoxo";
 import { Card } from "../../../components/Card";
 import { useNavigation } from "@react-navigation/native";
 
-type PerfilParamList = {
-  nome: string
-  id: string
-  avatar: string
-}
-
 export default function Home() {
-   const  {navigate}  = useNavigation <PerfilParamList> ()
+   const  {navigate} = useNavigation()
   return (
     <View
       style={{
@@ -32,11 +26,12 @@ export default function Home() {
           Atualização
         </Text>
       </Card>
+
       <ButtonRoxo
         onPress={() => navigate('Perfil', {
           nome: 'Rubens',
-          id: 'user@232131',
-          avatar: 'www.google.com',
+          id: 'uid@-1',
+          avatar: 'www.google.com'
         })}
         label="Meu perfil"
       />
