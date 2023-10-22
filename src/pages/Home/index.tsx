@@ -11,7 +11,7 @@ type PerfilParamList = {
 }
 
 export default function Home() {
-  const { navigate: string } = useNavigation()
+   const  {navigate}  = useNavigation <PerfilParamList> ()
   return (
     <View
       style={{
