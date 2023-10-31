@@ -12,6 +12,10 @@ export const ButtonRoxo = (props: any) => {
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "#7529e1",
+          shadowColor: "#5c04fe",
+            shadowOffset: {width: 2, height: 2},
+            shadowOpacity: 0.7,
+            shadowRadius: 30
         }}
       >
         <Text style={{ color: "#fff", fontSize: 28 }}>{props.label}</Text>

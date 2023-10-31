@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 import Pagamento from "../pages/Pagamento";
 import Cart from "../pages/Cart";
 import Welcome from "../pages/Welcome";
-import ItemDetails from "../pages/ItemDetails";
+import ProductDetails from "../../components/ProductDetails";
 
 declare global {
   namespace ReactNavigation {
@@ -21,7 +21,9 @@ declare global {
         avatar?: string;
       };
       Pagamento: undefined;
-      ItemDetails: undefined;
+      ProductDetails: {
+        item: Object | undefined
+      }
     }
   }
 }
@@ -52,7 +54,7 @@ function DrawerNavigation() {
           </TouchableOpacity>
       }}
       />
-      <Drawer.Screen name="Localizador" component={Cart} />
+      <Drawer.Screen name="Carrinho" component={Cart} />
       <Drawer.Screen name="Pagamento" component={Pagamento} />
     </Drawer.Navigator>
   );
@@ -75,7 +77,14 @@ function Router() {
           presentation: "modal",
         }}
       >
-        <Stack.Screen name="ItemDetails" component={ItemDetails} />
+        <Stack.Screen 
+        options={{
+          title: "Detalhes de Produto",
+          headerShown: true,
+          headerTintColor: '#ffffff',
+          headerStyle: {backgroundColor: '#6a00ff'},
+        }}
+        name="ProductDetails" component={ProductDetails} />
       </Stack.Group>
     </Stack.Navigator>
   );

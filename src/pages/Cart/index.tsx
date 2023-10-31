@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ButtonRoxo } from "../../../components/ButtonRoxo";
-import { Card } from "../../../components/Card";
+import { Card } from "../../../components/Card/card";
 import { useCart } from "../../contexts/CartContext/cartContext";
 import { Feather } from '@expo/vector-icons'
 

@@ -1,25 +1,13 @@
 import React from "react";
-import { View, Text, Image, FlatList } from "react-native";
+import { View, Text, Image, FlatList, ListRenderItemInfo} from "react-native";
 import { ButtonRoxo } from "../../../components/ButtonRoxo";
-import { Card } from "../../../components/Card";
+import { Card } from "../../../components/Card/card";
 import { useNavigation } from "@react-navigation/native";
 import { BASE_URL } from "../../api/api";
+import { ProductItem } from "../../../components/ProductItem/productItem";
+import { ProductItemProps } from "../../models/productItem";
 
-interface imgsUrls {
-  urls: Array<string>;
-}
-
-interface Products {
-  id?: number;
-  name: string;
-  price: number;
-  descount: number;
-  descrition: string;
-  imgUrl: string;
-  imgsUrls: imgsUrls;
-}
-
-const listProducts: Products[] = [
+const listProducts: ProductItemProps[] = [
   {
     id: 1,
     name: "Oculos 1",
@@ -201,6 +189,10 @@ const listProducts: Products[] = [
 export default function Home() {
   const { navigate } = useNavigation();
 
+  function renderItem({item}: ListRenderItemInfo<ProductItemProps>){
+    return <ProductItem {...item} />
+  }
+
   return (
     <View
       style={{
@@ -235,17 +227,7 @@ export default function Home() {
         data={listProducts}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item?.name}
-        renderItem={({ item: { name, descrition, price, descount, imgUrl } }) => {
-          return (
-            <View style={{flexDirection: 'column', alignSelf: 'center', justifyContent: 'center', alignItems: 'center', borderRadius: 30, width: '90%', height: 280, backgroundColor: "#9b53ff"}}>
-              <Image style={{width: '90%', height: '70%'}} source={{ uri: imgUrl }} />
-              <Text style={{color: '#ffff'}}>{name}</Text>
-              <Text style={{color: '#ffff'}}>{price}</Text>
-              <Text style={{color: '#ffff'}}>{descount}</Text>
-              <Text style={{color: '#ffff'}}>{descrition}</Text>
-            </View>
-          );
-        }}
+        renderItem={renderItem}
       />
     </View>
   );
