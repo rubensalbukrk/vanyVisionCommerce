@@ -1,13 +1,11 @@
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 
-export const ButtonRoxo = (props) => {
+export const ButtonRoxo = (props: any) => {
     return (
         <TouchableOpacity
         onPress={props.onPress}
         style={{
-          position: "absolute",
-          bottom: "20%",
           width: 200,
           height: 60,
           borderRadius: 30,

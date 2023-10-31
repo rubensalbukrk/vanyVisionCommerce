@@ -1,62 +1,129 @@
-import React from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import React, { useContext, useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, Image, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { ButtonRoxo } from "../../../components/ButtonRoxo";
 import { Card } from "../../../components/Card";
+import { useCart } from "../../contexts/CartContext/cartContext";
+import { Feather } from '@expo/vector-icons'
+
 
 export default function Cart() {
   const { navigate, goBack } = useNavigation();
-
+  const { cartState, addItem, removeItem, clearCart } = useCart();
+  const names: Array<string> = [
+    "Rubens",
+    "Matheus",
+    "Junior",
+    "Valdir",
+    "Ana",
+    "Maria",
+    "André",
+    "Batista",
+    "Gefferson"
+  ]
+  const city = [
+    "São Paulo",
+    "Rio de Janeiro",
+    "Minas Gerais",
+    "Paraíba",
+    "Parana",
+    "Goias",
+    "Pedras de Fogo",
+    "Santos",
+    "Alagoas"
+  ]
+  const randomCity = city[Math.floor(Math.random() * city.length)]
+  const randomName = names[Math.floor(Math.random() * names.length)];
   return (
-    <ScrollView
+    <View
       style={{
+        rowGap: 10,
         flex: 1,
-        paddingHorizontal: 20,
-        paddingBottom: '10%',
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: "#6717d6",
       }}
     >
-      <Card>
-        <Image
-          resizeMode="cover"
-          style={{ width: "50%", height: "100%", borderRadius: 20 }}
-          source={require("../../../assets/images/oculos/OFERTA1.jpeg")}
-        />
-        <Text style={{ color: "#ffffff" }}></Text>
-      </Card>
-      <Card>
-        <Image
-          resizeMode="cover"
-          style={{ width: "50%", height: "100%", borderRadius: 20 }}
-          source={require("../../../assets/images/oculos/OFERTA2.jpeg")}
-        />
-        <Text style={{ color: "#ffffff" }}></Text>
-      </Card>
-      <Card>
-        <Image
-          resizeMode="cover"
-          style={{ width: "50%", height: "100%", borderRadius: 20 }}
-          source={require("../../../assets/images/oculos/OFERTA4.jpeg")}
-        />
-        <Text style={{ color: "#ffffff" }}></Text>
-      </Card>
-      <Card>
-        <Image
-          resizeMode="cover"
-          style={{ width: "50%", height: "100%", borderRadius: 20 }}
-          source={require("../../../assets/images/oculos/QUADRADO.jpeg")}
-        />
-        <Text style={{ color: "#ffffff" }}></Text>
-      </Card>
-      <Card>
-        <Image
-          resizeMode="cover"
-          style={{ width: "50%", height: "100%", borderRadius: 20 }}
-          source={require("../../../assets/images/oculos/rayban.jpeg")}
-        />
-        <Text style={{ color: "#ffffff" }}></Text>
-      </Card>
-    </ScrollView>
+      <FlatList
+      showsVerticalScrollIndicator={false}
+        style={{
+          flex: 1,
+          width: "90%",
+          marginVertical: '10%',
+          maxHeight: 900,
+          borderRadius: 40,
 
+        }}
+        keyExtractor={(item) => item.id.toString()}
+        data={cartState.items}
+        renderItem={({ item, index }) => {
+          return (
+            <View
+            key={item.id}
+              style={{
+                marginVertical: 10,
+                width: "95%",
+                backgroundColor: "#ffffff60",
+                height: 200,
+                paddingHorizontal: 20,
+                borderRadius: 40,
+                alignSelf: 'center',
+                alignItems: 'center',
+                rowGap: 2,
+                justifyContent: 'center'
+              }}
+            >
+              <Image style={{position: 'absolute', top: 10, left: 15,width: 50, height: 50, borderRadius: 40}} source={{ uri: item.imgUrl}} />
+              <Text style={{color: '#fff', fontSize: 20}}>Nome: {item.name}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Local X: {item.price}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Local Y: {item.descount}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Estado: {item.descrition}</Text>
+              
+              <TouchableOpacity 
+              style={{width: 70, height: 70, position: 'absolute', top: 20, right: 10}}
+              onPress={() => removeItem(item.id)}
+              >
+                <Feather name="delete" color="white" size={22} />
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+      />
+      
+      <View
+        style={{
+          rowGap: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: "column",
+          width: "100%",
+          height: 100,
+          marginBottom: 40
+
+        }}
+      >
+        <ButtonRoxo 
+        label='Limpar'
+        onPress={() => clearCart()} />
+        <ButtonRoxo
+          label="Encontrar"
+          onPress={() => {
+            let lastID: number = cartState.items.length - 1
+            addItem({
+              id: lastID + 1,
+              name: randomName,
+              price: Math.min(Math.random()),
+              descount: Math.random(),
+              descrition: randomCity,
+              imgUrl: "https://i.pravatar.cc/50",
+              pricebase: Math.random(),
+            })
+          }
+          }
+        />
+  
+      </View>
+    </View>
   );
 }

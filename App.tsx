@@ -1,13 +1,15 @@
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import Router from './src/routes/stack';
-
+import "react-native-gesture-handler";
+import { useContext } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import Router from "./src/routes/stack";
+import { CartProvider } from "./src/contexts/CartContext/cartContext";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Router />
-    </NavigationContainer>
-    
+    <CartProvider>
+      <NavigationContainer>
+        <Router />
+      </NavigationContainer>
+    </CartProvider>
   );
 }

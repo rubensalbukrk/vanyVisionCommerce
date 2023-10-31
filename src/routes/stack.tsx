@@ -52,7 +52,7 @@ function DrawerNavigation() {
           </TouchableOpacity>
       }}
       />
-      <Drawer.Screen name="Carrinho" component={Cart} />
+      <Drawer.Screen name="Localizador" component={Cart} />
       <Drawer.Screen name="Pagamento" component={Pagamento} />
     </Drawer.Navigator>
   );
