@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, Image, FlatList, ListRenderItemInfo} from "react-native";
-import { ButtonRoxo } from "../../../components/ButtonRoxo";
+import { View, Text, Image, FlatList, ListRenderItemInfo } from "react-native";
 import { Card } from "../../../components/Card/card";
 import { useNavigation } from "@react-navigation/native";
 import { BASE_URL } from "../../api/api";
 import { ProductItem } from "../../../components/ProductItem/productItem";
 import { ProductItemProps } from "../../models/productItem";
+import { styled } from "nativewind";
+import { Background } from "../Welcome";
 
 const listProducts: ProductItemProps[] = [
   {
@@ -189,41 +190,29 @@ const listProducts: ProductItemProps[] = [
 export default function Home() {
   const { navigate } = useNavigation();
 
-  function renderItem({item}: ListRenderItemInfo<ProductItemProps>){
-    return <ProductItem {...item} />
+  function renderItem({ item }: ListRenderItemInfo<ProductItemProps>) {
+    return <ProductItem {...item} />;
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: 'center',
-        paddingHorizontal: 10,
-        paddingVertical: 18,
-        backgroundColor: "#6717d6",
-      }}
-    >
-      <View style={{ width: "100%", alignSelf: "flex-start" }}>
-        <Text
-          style={{
-            fontSize: 28,
-            marginBottom: 10,
-            fontWeight: "500",
-            color: "#fff",
-          }}
-        >
-          Destaques
+    <View className="flex flex-1 w-full max-h-full">
+      <View className="flex-1 w-full h-full absolute blur-xl">
+        <Image blurRadius={15} source={require("../../../assets/bg.jpg")} />
+      </View>
+      <Card title="Promoção semanal">
+        <Image
+        resizeMode="contain"
+          style={{ width: "100%", height: "100%", alignSelf: 'center' }}
+          source={{ uri: listProducts[15].imgUrl }}
+        />
+      </Card>
+      <View className="flex-1 justify-center rounded-xl bg-violet-700">
+        <Text className="text-slate-300 text-lg">
+          Promoção semanal
         </Text>
-        <Card>
-          <Image
-            style={{ width: "90%", resizeMode: "cover", height: "100%" }}
-            source={{ uri: listProducts[15].imgUrl }}
-          />
-        </Card>
       </View>
       <FlatList
-      style={{flex: 1, width: '100%', alignSelf: 'center'}}
+        style={{ flex: 1, width: "100%", alignSelf: "center" }}
         data={listProducts}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item?.name}

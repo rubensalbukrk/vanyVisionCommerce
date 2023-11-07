@@ -11,8 +11,9 @@ export const ButtonRoxo = (props: any) => {
           borderRadius: 30,
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#7529e1",
-          shadowColor: "#5c04fe",
+          marginVertical: 15,
+          backgroundColor: "#4400a38f",
+          shadowColor: "#3d0b98ae",
             shadowOffset: {width: 2, height: 2},
             shadowOpacity: 0.7,
             shadowRadius: 30

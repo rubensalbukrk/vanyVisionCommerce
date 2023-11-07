@@ -1,7 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 
 import { ButtonRoxo } from "../../../components/ButtonRoxo";
+import { styled } from "nativewind";
+
+export const Background = styled(View)
+
 
 export default function Welcome({ navigation }: any) {
   return (
@@ -13,6 +17,9 @@ export default function Welcome({ navigation }: any) {
         backgroundColor: "#6717d6",
       }}
     >
+      <Background className="flex-1 w-full h-full absolute blur-xl">
+        <Image blurRadius={15} source={require("../../../assets/bg.jpg")} />
+      </Background>
       <View style={{ alignContent: "flex-start" }}>
         <Text style={{ fontSize: 36, color: "#fff" }}>Vanny</Text>
         <Text style={{ fontSize: 64, fontWeight: "800", color: "#fff" }}>
