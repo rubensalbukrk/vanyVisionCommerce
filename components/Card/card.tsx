@@ -2,18 +2,21 @@ import { styled } from "nativewind";
 import React from "react";
 import { View, Text, Image } from "react-native";
 
-const CardBox = styled(View);
-const CardLabel = styled(Text);
-
-export const Card = ({children}: any) => {
+export const Card = (props: any) => {
   return (
     <>
-      <CardBox className="w-96 self-center h-56 bg-violet-400/10 mx-2 my-2 rounded-2xl shadow-lg">
-        <CardLabel className="text-white text-4xl my-5 mx-4">
-          Promoção semanal
-        </CardLabel>
-        {children}
-      </CardBox>
+      <Text className="text-violet-600 text-2xl mt-4 mx-6">
+        {props.title}
+        </Text>
+      <View className="w-80 self-center h-40
+        mx-2 my-2 rounded-lg bg-violet-600/30" >
+        
+        <Image
+        resizeMode="cover"
+          style={{ width: "100%", borderRadius: 50, height: '100%', alignSelf: 'center' }}
+          source={props.img}
+        />
+      </View>
     </>
   );
 };

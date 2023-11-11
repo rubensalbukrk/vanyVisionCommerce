@@ -1,34 +1,22 @@
 import * as React from "react";
-import { Image, TouchableOpacity } from "react-native";
+import {View, Image, TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Feather } from '@expo/vector-icons'
+import { Preload } from "../pages/Preload/preload";
 import Home from "../pages/Home";
 import Pagamento from "../pages/Pagamento";
 import Cart from "../pages/Cart";
 import Welcome from "../pages/Welcome";
 import ProductDetails from "../../components/ProductDetails";
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList {
-      Welcome: undefined;
-      Home: undefined;
-      Drawer: undefined;
-      Carrinho: {
-        id?: string;
-        nome?: string;
-        avatar?: string;
-      };
-      Pagamento: undefined;
-      ProductDetails: {
-        item: Object | undefined
-      }
-    }
-  }
-}
+
 const LogoTitle = () => {
-  return <Image style={{width: 80, height: 30, resizeMode: 'cover'}} source={require('../../assets/images/oculos.png')} />
+  return <Image style={{
+                  width: 230, 
+                  height: 80, 
+                  resizeMode: 'contain'}} 
+                  source={require('../../assets/images/oculos.png')} />
 }
 
 const Stack = createNativeStackNavigator();
@@ -38,20 +26,25 @@ function DrawerNavigation() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: "#6717d6"},
-        headerTintColor: "#ffffff",
+        headerTintColor: '#d0b7ff',
         drawerInactiveTintColor: "#ffffff80",
         drawerActiveTintColor: "#ffffff",
-        drawerStyle: { backgroundColor: "#6717d6" },
+        drawerStyle: {
+          backgroundColor: '#4303bb'
+        }
       }}
     >
       <Drawer.Screen name="Home" component={Home} 
       options={{ 
+        headerStyle: {
+          backgroundColor: '#4303bb'
+        },
         headerTitle: () => <LogoTitle />,
         headerRight: () => 
           <TouchableOpacity style={{width: 40, height: 40}} onPress={() => alert('Abrir carrinho')}>
             <Feather name="shopping-cart" size={28} color="white" />
           </TouchableOpacity>
+          
       }}
       />
       <Drawer.Screen name="Carrinho" component={Cart} />
@@ -69,6 +62,7 @@ function Router() {
       }}
     >
       <Stack.Group>
+        <Stack.Screen name="Preload" component={Preload}/>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Drawer" component={DrawerNavigation} />
       </Stack.Group>

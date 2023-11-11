@@ -1,13 +1,12 @@
 import React from "react";
-import { View, Text, Image, FlatList, ListRenderItemInfo } from "react-native";
+import { View, Text, Image, FlatList, ListRenderItemInfo, Dimensions } from "react-native";
 import { Card } from "../../../components/Card/card";
 import { useNavigation } from "@react-navigation/native";
 import { BASE_URL } from "../../api/api";
 import { ProductItem } from "../../../components/ProductItem/productItem";
 import { ProductItemProps } from "../../models/productItem";
-import { styled } from "nativewind";
-import { Background } from "../Welcome";
 
+const height = Dimensions.get('window').height 
 const listProducts: ProductItemProps[] = [
   {
     id: 1,
@@ -190,29 +189,19 @@ const listProducts: ProductItemProps[] = [
 export default function Home() {
   const { navigate } = useNavigation();
 
-  function renderItem({ item }: ListRenderItemInfo<ProductItemProps>) {
+ function renderItem({ item }: ListRenderItemInfo<ProductItemProps>) {
     return <ProductItem {...item} />;
   }
 
   return (
     <View className="flex flex-1 w-full max-h-full">
-      <View className="flex-1 w-full h-full absolute blur-xl">
-        <Image blurRadius={15} source={require("../../../assets/bg.jpg")} />
+      <View className="flex flex-1 w-full h-full absolute">
+        <Image blurRadius={80} style={{width: '100%', height: height}} source={require("../../../assets/bg-teste.png")} />
       </View>
-      <Card title="Promoção semanal">
-        <Image
-        resizeMode="contain"
-          style={{ width: "100%", height: "100%", alignSelf: 'center' }}
-          source={{ uri: listProducts[15].imgUrl }}
-        />
-      </Card>
-      <View className="flex-1 justify-center rounded-xl bg-violet-700">
-        <Text className="text-slate-300 text-lg">
-          Promoção semanal
-        </Text>
-      </View>
+      <Card title="Promoção semanal" img={{uri: listProducts[3].imgUrl}} />
       <FlatList
-        style={{ flex: 1, width: "100%", alignSelf: "center" }}
+        horizontal={true}
+        style={{ width: "100%"}}
         data={listProducts}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item?.name}

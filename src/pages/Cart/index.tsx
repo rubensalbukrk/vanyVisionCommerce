@@ -10,30 +10,7 @@ import { Feather } from '@expo/vector-icons'
 export default function Cart() {
   const { navigate, goBack } = useNavigation();
   const { cartState, addItem, removeItem, clearCart } = useCart();
-  const names: Array<string> = [
-    "Rubens",
-    "Matheus",
-    "Junior",
-    "Valdir",
-    "Ana",
-    "Maria",
-    "André",
-    "Batista",
-    "Gefferson"
-  ]
-  const city = [
-    "São Paulo",
-    "Rio de Janeiro",
-    "Minas Gerais",
-    "Paraíba",
-    "Parana",
-    "Goias",
-    "Pedras de Fogo",
-    "Santos",
-    "Alagoas"
-  ]
-  const randomCity = city[Math.floor(Math.random() * city.length)]
-  const randomName = names[Math.floor(Math.random() * names.length)];
+
   return (
     <View
       style={{
@@ -108,19 +85,6 @@ export default function Cart() {
         onPress={() => clearCart()} />
         <ButtonRoxo
           label="Encontrar"
-          onPress={() => {
-            let lastID: number = cartState.items.length - 1
-            addItem({
-              id: lastID + 1,
-              name: randomName,
-              price: Math.min(Math.random()),
-              descount: Math.random(),
-              descrition: randomCity,
-              imgUrl: "https://i.pravatar.cc/50",
-              pricebase: Math.random(),
-            })
-          }
-          }
         />
   
       </View>

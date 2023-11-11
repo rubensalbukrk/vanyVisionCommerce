@@ -9,34 +9,14 @@ export default function ProductDetails({ route }: any) {
   const { name, descrition, price, descount, imgUrl }: ProductItemProps =
     route?.params?.item;
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "column",
-        rowGap: 20,
-        alignItems: "center",
-        backgroundColor: "#6717d6",
-      }}
-    >
-      <Card>
-        <Image
-          style={{
-            resizeMode: "cover",
-            width: "100%",
-            height: 300,
-          }}
-          source={{ uri: imgUrl }}
-        />
-      </Card>
+    <View className="flex-1 w-full bg-black">
+      <View className="w-80 self-center mt-5 rounded-xl h-46 bg-violet-800/60">
+        <Image className="w-80 h-44 self-center " source={{ uri: imgUrl }} />
+      </View>
 
-      <View style={{ width: '90%', marginHorizontal: 20 }}>
-        <Text style={{color: '#fff', fontSize: 34}}>
-          {name}
-        </Text>
-        <Text style={{color: '#fff', fontSize: 34}}>
-          {descrition}
-        </Text>
-        
+      <View style={{ width: "90%", marginHorizontal: 20 }}>
+        <Text style={{ color: "#fff", fontSize: 34 }}>{name}</Text>
+        <Text style={{ color: "#fff", fontSize: 34 }}>{descrition}</Text>
       </View>
     </View>
   );

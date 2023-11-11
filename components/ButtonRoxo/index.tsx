@@ -4,22 +4,13 @@ import { TouchableOpacity, Text } from "react-native";
 export const ButtonRoxo = (props: any) => {
     return (
         <TouchableOpacity
+        className='w-52 h-12 rounded-xl justify-center items-center bg-violet-100/90
+                 active:bg-violet-900
+                 active:rotate-100
+                 active:scale-150'
         onPress={props.onPress}
-        style={{
-          width: 200,
-          height: 60,
-          borderRadius: 30,
-          alignItems: "center",
-          justifyContent: "center",
-          marginVertical: 15,
-          backgroundColor: "#4400a38f",
-          shadowColor: "#3d0b98ae",
-            shadowOffset: {width: 2, height: 2},
-            shadowOpacity: 0.7,
-            shadowRadius: 30
-        }}
       >
-        <Text style={{ color: "#fff", fontSize: 28 }}>{props.label}</Text>
+        <Text className='text-xl active:text-2xl font-default text-slate-50'>{props.label}</Text>
       </TouchableOpacity>
     )
 }

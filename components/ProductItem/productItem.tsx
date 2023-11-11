@@ -2,13 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Image, Text } from "react-native";
 import { ProductItemProps } from "../../src/models/productItem";
 import { useNavigation } from "@react-navigation/native";
-import { styled } from "nativewind";
 
-const ItemBox = styled(
-  View,
-  "flex flex-1 w-80 h-30 my-3 px-4 py-3 bg-violet-400/10 shadow-lg rounded-2xl self-center"
-);
-const ItemLabels = styled(Text, 'text-white text-2xl')
 
 export const ProductItem = ({
   id,
@@ -30,7 +24,8 @@ export const ProductItem = ({
   };
 
   return (
-    <ItemBox>
+    <View className="w-80 h-64 ml-4 mr-2 my-3 px-4 py-3 
+                 bg-violet-500/20 blur-3xl rounded-2xl">
       <TouchableOpacity
         onPress={() =>
           navigate("ProductDetails", {
@@ -41,15 +36,15 @@ export const ProductItem = ({
         <Image
           style={{
             width: "100%",
-            height: 150,
+            height: 120,
           }}
           source={{ uri: imgUrl }}
         />
-        <ItemLabels>{name}</ItemLabels>
-        <ItemLabels>{price}</ItemLabels>
-        <ItemLabels>{descount}</ItemLabels>
-        <ItemLabels>{descrition}</ItemLabels>
+        <Text className="text-lg text-violet-50">{name}</Text>
+        <Text className="text-lg text-violet-50">{price}</Text>
+        <Text className="text-lg text-violet-50">{descount}</Text>
+        <Text className="text-lg text-violet-50">{descrition}</Text>
       </TouchableOpacity>
-    </ItemBox>
+    </View>
   );
 };
