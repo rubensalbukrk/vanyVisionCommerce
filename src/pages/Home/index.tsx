@@ -1,12 +1,17 @@
 import React from "react";
-import { View, Text, Image, FlatList, ListRenderItemInfo, Dimensions } from "react-native";
+import { height, width } from "../../utils/dimensions";
+import {
+  View,
+  FlatList,
+  ListRenderItemInfo,
+  TouchableOpacity,
+} from "react-native";
 import { Card } from "../../../components/Card/card";
 import { useNavigation } from "@react-navigation/native";
 import { BASE_URL } from "../../api/api";
 import { ProductItem } from "../../../components/ProductItem/productItem";
 import { ProductItemProps } from "../../models/productItem";
 
-const height = Dimensions.get('window').height 
 const listProducts: ProductItemProps[] = [
   {
     id: 1,
@@ -189,24 +194,27 @@ const listProducts: ProductItemProps[] = [
 export default function Home() {
   const { navigate } = useNavigation();
 
- function renderItem({ item }: ListRenderItemInfo<ProductItemProps>) {
+  function renderItem({ item }: ListRenderItemInfo<ProductItemProps>) {
     return <ProductItem {...item} />;
   }
 
   return (
-    <View className="flex flex-1 w-full max-h-full">
-      <View className="flex flex-1 w-full h-full absolute">
-        <Image blurRadius={80} style={{width: '100%', height: height}} source={require("../../../assets/bg-teste.png")} />
-      </View>
-      <Card title="Promoção semanal" img={{uri: listProducts[3].imgUrl}} />
-      <FlatList
+    <View style={{zIndex: 10}} className="flex-1 w-full bg-violet-50/100">
+      
+      <View
+      className='absolute bottom-64 w-full h-80 '
+      >
+       <FlatList
         horizontal={true}
         style={{ width: "100%"}}
         data={listProducts}
-        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item?.name}
         renderItem={renderItem}
       />
+      </View>
+      
+      
     </View>
   );
 }

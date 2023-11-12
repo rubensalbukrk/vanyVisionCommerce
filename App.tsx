@@ -10,6 +10,7 @@ import {
   Rubik_500Medium  
 } from '@expo-google-fonts/rubik'
 
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     Rubik_300Light,

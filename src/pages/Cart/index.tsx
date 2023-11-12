@@ -7,10 +7,11 @@ import { useCart } from "../../contexts/CartContext/cartContext";
 import { Feather } from '@expo/vector-icons'
 
 
-export default function Cart() {
+export default function Cart({route}: any) {
   const { navigate, goBack } = useNavigation();
   const { cartState, addItem, removeItem, clearCart } = useCart();
-
+  const { nome } = route.params
+  
   return (
     <View
       style={{
@@ -22,6 +23,9 @@ export default function Cart() {
         backgroundColor: "#6717d6",
       }}
     >
+      <Text>
+       {`olá ${nome}`}
+      </Text>
       <FlatList
       showsVerticalScrollIndicator={false}
         style={{
@@ -63,11 +67,19 @@ export default function Cart() {
               >
                 <Feather name="delete" color="white" size={22} />
               </TouchableOpacity>
+
+             
             </View>
           );
         }}
       />
-      
+       <TouchableOpacity
+              onPress={() => navigate("Home")}
+              >
+                <Text>
+                  Voltar
+                </Text>
+              </TouchableOpacity>
       <View
         style={{
           rowGap: 10,
