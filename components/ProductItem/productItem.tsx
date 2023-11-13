@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, TouchableOpacity, Image, Text } from "react-native";
 import { ProductItemProps } from "../../src/models/productItem";
 import { useNavigation } from "@react-navigation/native";

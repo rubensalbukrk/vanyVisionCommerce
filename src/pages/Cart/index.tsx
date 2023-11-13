@@ -10,7 +10,6 @@ import { Feather } from '@expo/vector-icons'
 export default function Cart({route}: any) {
   const { navigate, goBack } = useNavigation();
   const { cartState, addItem, removeItem, clearCart } = useCart();
-  const { nome } = route.params
   
   return (
     <View
@@ -24,7 +23,7 @@ export default function Cart({route}: any) {
       }}
     >
       <Text>
-       {`olá ${nome}`}
+       {`olá ${route?.params?.nome}`}
       </Text>
       <FlatList
       showsVerticalScrollIndicator={false}

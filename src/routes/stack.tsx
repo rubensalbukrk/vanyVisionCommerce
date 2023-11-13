@@ -9,7 +9,6 @@ import Welcome from "../pages/Welcome";
 import ProductDetails from "../pages/ProductDetails";
 import { Header } from "../../components/Header/header";
 import colors from 'tailwindcss/colors'
-import { width } from "../utils/dimensions";
 
 declare global {
   namespace ReactNavigation {
@@ -47,7 +46,6 @@ function DrawerNavigation() {
       <Drawer.Screen name="Home" component={Home} 
       options={{ 
         headerStyle: {
-          backgroundColor: '#3C3C3C',
           zIndex: 1
         },
         header: () => <Header />,
