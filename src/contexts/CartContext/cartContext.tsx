@@ -1,25 +1,17 @@
 import React, { createContext, useContext, useReducer } from "react";
+import { ProductItemProps } from "../../models/productItem";
 
-interface ItemProps {
-    id: number
-    name: string
-    price: number
-    descount: number
-    pricebase: number
-    descrition: string
-    imgUrl: string
-}
 type CartState = {
-    items: ItemProps[];
+    items: ProductItemProps[];
 }
 type CartActions = 
-    | { type: 'ADD_ITEM'; item: ItemProps }
+    | { type: 'ADD_ITEM'; item: ProductItemProps }
     | { type: 'REMOVE_ITEM'; id: number }
     | { type: 'CLEAR_CART'; }
 
 type CartContextType = {
     cartState: CartState
-    addItem: (item: ItemProps) => void
+    addItem: (item: ProductItemProps) => void
     removeItem: (id: number) => void
     clearCart: () => void
 }
@@ -48,7 +40,7 @@ const reducer = (state: CartState, action: CartActions) => {
 const CartProvider = ({ children }: {children: React.ReactNode}) => {
     const [cartState, dispatch] = useReducer(reducer,{items: []})
 
-    const addItem = (item: ItemProps) => {
+    const addItem = (item: ProductItemProps) => {
         dispatch({ type: 'ADD_ITEM', item})
     }
     const removeItem = (id: number) => {

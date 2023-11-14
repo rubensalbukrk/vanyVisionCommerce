@@ -22,9 +22,7 @@ export default function Cart({route}: any) {
         backgroundColor: "#6717d6",
       }}
     >
-      <Text>
-       {`olá ${route?.params?.nome}`}
-      </Text>
+
       <FlatList
       showsVerticalScrollIndicator={false}
         style={{
@@ -35,7 +33,7 @@ export default function Cart({route}: any) {
           borderRadius: 40,
 
         }}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.name}
         data={cartState.items}
         renderItem={({ item, index }) => {
           return (
@@ -55,10 +53,11 @@ export default function Cart({route}: any) {
               }}
             >
               <Image style={{position: 'absolute', top: 10, left: 15,width: 50, height: 50, borderRadius: 40}} source={{ uri: item.imgUrl}} />
-              <Text style={{color: '#fff', fontSize: 20}}>Nome: {item.name}</Text>
-              <Text style={{color: '#fff', fontSize: 20}}>Local X: {item.price}</Text>
-              <Text style={{color: '#fff', fontSize: 20}}>Local Y: {item.descount}</Text>
-              <Text style={{color: '#fff', fontSize: 20}}>Estado: {item.descrition}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>{item.name}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Preço{item.price}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Qt. {item.countItem}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Total{item.totalItem}</Text>
+              <Text style={{color: '#fff', fontSize: 20}}>Desconto {item.descount}</Text>
               
               <TouchableOpacity 
               style={{width: 70, height: 70, position: 'absolute', top: 20, right: 10}}
@@ -72,33 +71,8 @@ export default function Cart({route}: any) {
           );
         }}
       />
-       <TouchableOpacity
-              onPress={() => navigate("Home")}
-              >
-                <Text>
-                  Voltar
-                </Text>
-              </TouchableOpacity>
-      <View
-        style={{
-          rowGap: 10,
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: "column",
-          width: "100%",
-          height: 100,
-          marginBottom: 40
 
-        }}
-      >
-        <ButtonRoxo 
-        label='Limpar'
-        onPress={() => clearCart()} />
-        <ButtonRoxo
-          label="Encontrar"
-        />
-  
-      </View>
+     
     </View>
   );
 }

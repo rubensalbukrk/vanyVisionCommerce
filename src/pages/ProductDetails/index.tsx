@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ProductItemProps } from "../../models/productItem";
 import BackgroundProduct from "../../../assets/svgs/view-product-bg-wave.svg";
 import { Ionicons, FontAwesome5 } from "@expo/vector-icons";
+import { useCart } from "../../contexts/CartContext/cartContext";
 
 export default function ProductDetails({ route }: any ) {
+  const {addItem, cartState} = useCart()
   const { navigate, goBack } = useNavigation();
-  const [total, setTotal] = useState(Number);
-  const [count, setCount] = useState(Number);
+  const [totalItem, setTotal] = useState(Number);
+  const [countItem, setCount] = useState(Number);
   const { name, descrition, price, descount, imgUrl }: ProductItemProps =
     route?.params?.item;
+
+  useEffect(() => {
+    setTotal(price * countItem)
+  },[countItem])
 
   return (
     <View className="flex-1 mt-20 w-full bg-black rounded-t-3xl">
@@ -37,16 +43,16 @@ export default function ProductDetails({ route }: any ) {
 
           <View className="flex-row px-1 justify-between items-center shadow-lg shadow-black self-end w-32 h-12 bg-violet-600 rounded-full">
             <TouchableOpacity
-              onPress={() => setCount(count - 1)}
+              onPress={() => setCount(countItem - 1)}
               className="w-10 h-10 justify-center items-center rounded-full bg-violet-900"
             >
               <Ionicons name="md-remove-outline" size={24} color="white" />
             </TouchableOpacity>
 
-            <Text className="font-default text-lg text-white/80 ">{count}</Text>
+            <Text className="font-default text-lg text-white/80 ">{countItem}</Text>
             
             <TouchableOpacity
-              onPress={() => setCount(count + 1)}
+              onPress={() => setCount(countItem + 1)}
               className="w-10 h-10 justify-center items-center rounded-full bg-violet-900"
             >
               <Ionicons name="add-outline" size={24} color="white" />
@@ -57,10 +63,19 @@ export default function ProductDetails({ route }: any ) {
         <View className="flex-row gap-3 w-full h-20 items-center">
          
           <Text className="font-default text-3xl text-white/80">Total</Text>
-          <Text className="font-light text-5xl text-white/80">{price * count}</Text>
+          <Text className="font-light text-5xl text-white/80">{price * countItem}</Text>
         </View>
 
         <TouchableOpacity
+        onPress={() => addItem({
+          id: cartState.items.length + 1,
+          name,
+          price,
+          countItem,
+          totalItem,
+          imgUrl,
+          descount
+        }) }
         className='flex-row w-60 h-14 mt-2 bg-violet-300/40 rounded-xl justify-evenly items-center self-center'
         >
           <Text className='font-medium text-3xl text-white/90 self-center'>
